@@ -55,6 +55,8 @@ Route::controller(ResultController::class)->name('result.')->prefix('result')->g
 Route::controller(ScheduleController::class)->name('schedule.')->prefix('schedule')->group(function(){
     Route::get('/', 'all')->name('all');
 
+    Route::get('/all/{department_id}/{session_id}', 'allBySessionAndDepartment')->name('all.session.department');
+
     Route::get('/add', 'add')->name('add');
     Route::post('/add/save', 'addSave')->name('add.save');
 
