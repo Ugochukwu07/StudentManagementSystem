@@ -29,6 +29,7 @@ class ProfileUpdateRequest extends FormRequest
             'session_id' => 'require|numeric|exists:sessions,id',
             'faculty_id' => 'require|numeric|exists:faculties,id',
             'department_id' => 'require|numeric|exists:departments,id',
+            'level' => 'required|numeric|min:100'
         ];
     }
 }

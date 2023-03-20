@@ -33,6 +33,7 @@ class RegisterRequest extends FormRequest
             'department_id' => 'require|numeric|exists:departments,id',
             'password' => 'require|string|confirmed',
             'password_confirmation' => 'require|string',
+            'level' => 'required|numeric|min:100'
         ];
     }
 }

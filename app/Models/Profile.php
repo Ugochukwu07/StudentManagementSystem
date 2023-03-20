@@ -12,7 +12,7 @@ class Profile extends Model
     protected $fillable = [
         'reg_number', 'phone_number' , 'address',
         'sex', 'session_id', 'faculty_id',
-        'department_id', 'user_id'
+        'department_id', 'user_id', 'level'
     ];
 
     public function user()

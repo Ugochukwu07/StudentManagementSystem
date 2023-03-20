@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
-    protected function id(){ return auth()->user()->id; }
-
     public function schedules()
     {
         $schedules = (new ScheduleService())->getSchedules($this->id());

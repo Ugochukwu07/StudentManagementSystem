@@ -21,12 +21,14 @@ class ScheduleService{
         $schedule_map = array();
         $schedules = array();
         foreach($departments as $department){
+            $s_dept = [];
             foreach($sessions as $session){
                 $schedule = Schedule::where('department_id', $department->id)->where('session_id', $session->id)->first();
                 if($schedule && !in_array($schedule->id, $schedule_map))
                     array_push($schedule_map, $schedule->id);
                     array_push($schedules, $schedule);
             }
+            
         }
 
         return collect($schedules);

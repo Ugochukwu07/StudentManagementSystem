@@ -21,9 +21,9 @@ Route::controller(ScheduleController::class)->name('schedule.')->prefix('schedul
 });
 
 Route::controller(ResultController::class)->name('result.')->prefix('result')->group(function(){
-    Route::get('/', 'select')->name('select');
-    Route::get('/save', 'selectSave')->name('select.save');
+    Route::get('/select', 'select')->name('select');
+    Route::post('/select/save', 'selectSave')->name('select.save');
 
-    Route::get('/', 'results')->name('view');
-    Route::get('/{id}', 'details')->name('details');
+    Route::get('/{id}', 'results')->name('view');
+    Route::get('/v/{id}', 'details')->name('details');
 });
