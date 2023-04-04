@@ -18,3 +18,14 @@ Route::get('/', function () {
 })->name('home');
 
 require('auth.php');
+
+//Artisan
+Route::get('/artisan/{command}', function($command){
+    if($command == 'migrate'){
+        $output = ['--force' => true];
+    }else{
+        $output = [];
+    }
+    Artisan::call($command, $output);
+    dd(Artisan::output());
+});
