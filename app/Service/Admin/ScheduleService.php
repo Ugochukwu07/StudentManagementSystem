@@ -28,7 +28,7 @@ class ScheduleService{
                     array_push($schedule_map, $schedule->id);
                     array_push($schedules, $schedule);
             }
-            
+
         }
 
         return collect($schedules);

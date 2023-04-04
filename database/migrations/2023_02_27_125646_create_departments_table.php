@@ -17,11 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('active');
-            // $table->foreign('faculty_id')->references('id')->on('faculty')->onDelete('cascade');
-            // $table->foreign('added_by')->references('id')->on('admin')->onDelete('cascade');
-            $table->boolean('approved');
-            $table->unsignedInteger('approved_by'); 
-            $table->string('added_by_role'); 
             $table->unsignedInteger('added_by');
             $table->timestamps();
         });

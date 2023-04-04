@@ -24,16 +24,16 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'string|required',
             'reg_number' => 'string|required|unique:profiles,reg_number',
-            'email' => 'required|email',
-            'address' => 'string|required',
-            'sex' => 'string|required',
+            'email' => 'required|email|unique:users,email',
+            // 'address' => 'string|required',
+            // 'sex' => 'string|required',
             'phone_number' => 'string|required|unique:profiles,phone_number',
-            'session_id' => 'require|numeric|exists:sessions,id',
-            'faculty_id' => 'require|numeric|exists:faculties,id',
-            'department_id' => 'require|numeric|exists:departments,id',
-            'password' => 'require|string|confirmed',
-            'password_confirmation' => 'require|string',
-            'level' => 'required|numeric|min:100'
+            'session_id' => 'required|numeric|exists:sessions,id',
+            // 'faculty_id' => 'required|numeric|exists:faculties,id',
+            'department_id' => 'required|numeric|exists:departments,id',
+            'password' => 'required|string|confirmed',
+            'password_confirmation' => 'required|string',
+            // 'level' => 'required|numeric|min:100'
         ];
     }
 }

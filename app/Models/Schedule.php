@@ -10,7 +10,10 @@ class Schedule extends Model
     use HasFactory;
 
     protected $fillable = [
-        'session_id', 'department_id', 'added_by', 'course', 'course_code',  'start_time', 'end_time', 'canceled', 'day'
+        'session_id', 'department_id',
+        'added_by', 'course', 'course_code',
+        'start_time', 'end_time',
+        'canceled', 'day'
         ,'venue', 'lecture'
     ];
 

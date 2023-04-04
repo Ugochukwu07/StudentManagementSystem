@@ -17,11 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('active');
-            $table->boolean('approved');
-            $table->unsignedInteger('approved_by'); 
-            $table->string('added_by_role'); 
             $table->unsignedInteger('added_by');
-            // $table->foreign('added_by')->references('id')->on('admin')->onDelete('cascade');
             $table->timestamps();
         });
     }

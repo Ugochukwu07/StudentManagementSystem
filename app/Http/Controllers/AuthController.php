@@ -11,8 +11,8 @@ use App\Models\Department;
 use App\Service\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\View\Factory;
 use App\Http\Requests\Student\RegisterRequest;
+use Illuminate\View\View;
 
 class AuthController extends Controller
 {
@@ -21,13 +21,13 @@ class AuthController extends Controller
      *
      * @return Factory
      */
-    public function register(): Factory
+    public function register(): View
     {
         $sessions = Session::all();
         $faculties = Faculty::all();
         $departments = Department::all();
 
-        return view('auth.register', compact('session', 'faculties', 'departments'));
+        return view('auth.register', compact('sessions', 'faculties', 'departments'));
     }
 
 

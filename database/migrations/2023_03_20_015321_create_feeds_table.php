@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('feeds', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('message');
+            $table->string('type');
+            $table->boolean('status');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

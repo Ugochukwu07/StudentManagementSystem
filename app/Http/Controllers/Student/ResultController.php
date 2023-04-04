@@ -27,7 +27,7 @@ class ResultController extends Controller
                             ->where('department_id', Profile::where('user_id', $this->id())->first()->department_id)
                             ->get();
 
-        if($result)
+        // if($result)
             // return redirect()->route('student.result.view', [''])
     }
 }

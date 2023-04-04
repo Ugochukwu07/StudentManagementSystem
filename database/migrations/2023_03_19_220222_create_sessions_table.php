@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
+            $table->string('year')->unique();
+            $table->unsignedBigInteger('added_by');
             $table->timestamps();
         });
     }
