@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Student;
 
+use App\Models\Feed;
 use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\Student\MainService;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\Student\ProfileUpdateRequest;
 use Illuminate\View\View as Factory;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Student\ProfileUpdateRequest;
 
 class MainController extends Controller
 {
@@ -21,7 +22,8 @@ class MainController extends Controller
      */
     public function overview(): Factory
     {
-        return view('student.overview');
+        $feeds = Feed::where('user_id', auth()->user()->id)->where('status', 0)->orderBy('created_at', 'desc')->take(10)->get();
+        return view('student.overview', compact('feeds'));
     }
 
 

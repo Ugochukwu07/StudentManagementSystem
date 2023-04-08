@@ -118,6 +118,13 @@ class AuthController extends Controller
     }
 
     public function logout(){
+        Feed::create([
+            'type' => 1,
+            'title' => 'Account Access',
+            'message' => auth()->user()->name . ' just logged Out',
+            'user_id' => auth()->user()->id,
+            'status' => false
+        ]);
         Auth::logout();
         return redirect()->route('home')->with('success', 'Logged Out Successfully');
     }
