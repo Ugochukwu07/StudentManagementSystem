@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use stdClass;
+use App\Models\Feed;
 use App\Models\User;
 use Illuminate\Http;
 use App\Models\Faculty;
 use App\Models\Profile;
 use App\Models\Session;
+use Illuminate\View\View;
 use App\Models\Department;
 use App\Service\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Student\RegisterRequest;
-use Illuminate\View\View;
 
 class AuthController extends Controller
 {
@@ -26,6 +28,13 @@ class AuthController extends Controller
         $sessions = Session::all();
         $faculties = Faculty::all();
         $departments = Department::all();
+
+        $sessionsData = new stdClass;
+        $sessionsData->id = 1; $sessionsData->year = '2021/2022';
+        $sessions = [$sessionsData];
+        $departmentsData = new stdClass;
+        $departmentsData->id = 1; $departmentsData->name = 'Computer Science';
+        $departments = [$departmentsData];
 
         return view('auth.register', compact('sessions', 'faculties', 'departments'));
     }
@@ -44,7 +53,7 @@ class AuthController extends Controller
         if (!$user)
             return back()->with('error', 'Sorry, something went wrung');
 
-        Auth::login($user);
+        Auth::attempt(['email' => $request->email, 'password' => $request->password], true);
 
         $profile = (new AuthService())->storeProfile($request, $user->id);
         if (!$profile)
@@ -86,18 +95,26 @@ class AuthController extends Controller
             $profile = Profile::where('reg_number', $request->email_reg)->first();
             $email = $profile->user->email;
         } else {
-            return back()->withErrors('Invalid Email Address or Reg Number');
+            return back()->with('error', 'Invalid Email Address or Reg Number');
         }
 
         if (Auth::attempt(['email' => $email, 'password' => $request->password], true)) {
             //when everything went right
+
+            Feed::create([
+                'type' => 1,
+                'title' => 'Account Access',
+                'message' => auth()->user()->name . ' just logged In',
+                'user_id' => auth()->user()->id,
+                'status' => false
+            ]);
             return auth()->user()->admin ?
                     redirect()->route('admin.overview')->with('success', 'Logged In Successfully')
                     :
                     redirect()->route('student.overview')->with('success', 'Logged In Successfully');
         }
 
-        return back()->with('failed', 'Login details do not match');
+        return back()->with('error', 'Login details do not match');
     }
 
     public function logout(){

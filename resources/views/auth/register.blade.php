@@ -9,7 +9,7 @@
   <form class="row g-3" method="POST" action="{{ route('register.save') }}">
     <div class="col-12 col-md-6">
       <label for="name" class="form-label">Your Full Name*</label>
-      <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="John Doe" id="name" required>
+      <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="John Doe" id="name">
       @error('name')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
@@ -17,7 +17,7 @@
 
     <div class="col-12 col-md-6">
       <label for="email" class="form-label">Your Email</label>
-      <input type="email" name="email" placeholder="example@nau.com.edu" value="{{ old('email') }}" class="form-control" id="email" required>
+      <input type="email" name="email" placeholder="example@nau.com.edu" value="{{ old('email') }}" class="form-control" id="email">
       @error('email')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
@@ -25,7 +25,7 @@
 
     <div class="col-12 col-md-6">
       <label for="reg_number" class="form-label">Reg Number*</label>
-      <input type="text" name="reg_number" class="form-control" value="{{ old('reg_number') }}" placeholder="2018674256" id="reg_number" required>
+      <input type="text" name="reg_number" class="form-control" value="{{ old('reg_number') }}" placeholder="2018674256" id="reg_number">
       @error('reg_number')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
@@ -33,7 +33,7 @@
 
     <div class="col-12 col-md-6">
       <label for="phone_number" class="form-label">Phone Number</label>
-      <input type="text" name="phone_number" placeholder="08192564316" value="{{ old('phone_number') }}" class="form-control" id="phone_number" required>
+      <input type="text" name="phone_number" placeholder="08192564316" value="{{ old('phone_number') }}" class="form-control" id="phone_number">
       @error('phone_number')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
@@ -63,16 +63,16 @@
       @enderror
     </div>
 
-    <div class="col-12">
+    <div class="col-12 col-md-6">
       <label for="password" class="form-label">Password</label>
-      <input type="password" placeholder="Type Password" name="password" class="form-control" id="password" required>
+      <input type="password" placeholder="Type Password" name="password" class="form-control" id="password">
       @error('password')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
     </div>
-    <div class="col-12">
+    <div class="col-12 col-md-6">
       <label for="password_confirmation" class="form-label">Password</label>
-      <input type="password" placeholder="Type Password Confirmation" name="password_confirmation" class="form-control" id="password_confirmation" required>
+      <input type="password" placeholder="Type Password Confirmation" name="password_confirmation" class="form-control" id="password_confirmation">
       @error('password_confirmation')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
@@ -80,7 +80,7 @@
     @csrf
     <div class="col-12">
         <div class="form-check">
-            <input class="form-check-input" name="terms" type="checkbox" value="" id="terms" required>
+            <input class="form-check-input" name="terms" type="checkbox" value="" id="terms">
             <label class="form-check-label" for="terms">I agree and accept the <a href="#">terms and conditions</a></label>
             @error('terms')
                 <div class="invalid-feedback">{{ $message }}</div>

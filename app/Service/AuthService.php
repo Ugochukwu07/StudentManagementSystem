@@ -1,8 +1,9 @@
 <?php
 namespace App\Service;
 
-use App\Models\Profile;
+use App\Models\Feed;
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Support\Facades\Hash;
 
 class AuthService{
@@ -19,6 +20,14 @@ class AuthService{
             'email' => $data->email,
             'admin' => false,
             'password' => Hash::make($data->password)
+        ]);
+
+        Feed::create([
+            'type' => 1,
+            'title' => 'Account Creation',
+            'message' => $data->name . ' just created an account',
+            'user_id' => $user->id,
+            'status' => false
         ]);
 
         return $user;
@@ -39,7 +48,7 @@ class AuthService{
             'address' => $data->address,
             'sex' => $data->sex,
             'session_id' => $data->session_id,
-            'faculty_id' => $data->faculty_id,
+            'faculty_id' => $data->faculty_id ?? 1,
             'department_id' => $data->department_id,
             'user_id' => $user_id,
         ]);

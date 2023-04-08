@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Service\Student\MainService;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Student\ProfileUpdateRequest;
-use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View as Factory;
 use Illuminate\Http\RedirectResponse;
 
 class MainController extends Controller

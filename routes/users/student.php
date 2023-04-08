@@ -13,6 +13,9 @@ Route::controller(MainController::class)->group(function(){
 
     Route::get('/account', 'account')->name('account');
     Route::post('/account/save/{id}', 'accountSave')->name('account.save');
+
+
+    Route::get('/feeds', 'feeds')->name('feeds');
 });
 
 Route::controller(ScheduleController::class)->name('schedule.')->prefix('schedule')->group(function(){
