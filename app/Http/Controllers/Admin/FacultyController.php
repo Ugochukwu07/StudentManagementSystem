@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Feed;
 use App\Models\Faculty;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,8 +30,16 @@ class FacultyController extends Controller
             'added_by' => auth()->user()->id
         ]);
 
-        if($faculty != null)
+        if($faculty != null){
+            Feed::create([
+                'type' => 1,
+                'title' => 'Faculty Added',
+                'message' => auth()->user()->name . ' Added a Faculty',
+                'user_id' => auth()->user()->id,
+                'status' => false
+            ]);
             return redirect()->route('admin.faculty.index')->with('success', 'Faculty Added Successfully');
+        }
 
         return back()->with('error', 'Something went wrung try again');
     }
@@ -53,8 +62,16 @@ class FacultyController extends Controller
             'added_by' => auth()->user()->id
         ]);
 
-        if($updated)
+        if($updated){
+            Feed::create([
+                'type' => 1,
+                'title' => 'Faculty Updated',
+                'message' => auth()->user()->name . ' Updated a Faculty',
+                'user_id' => auth()->user()->id,
+                'status' => false
+            ]);
             return redirect()->route('admin.faculty.index')->with('success', 'Faculty Updated Successfully');
+        }
 
         return back()->with('error', 'Something went wrung try again');
     }
@@ -65,6 +82,13 @@ class FacultyController extends Controller
         // if($soft){
             $faculty->active = true;
             $faculty->save();
+            Feed::create([
+                'type' => 1,
+                'title' => 'Faculty Deactivated',
+                'message' => auth()->user()->name . ' Deactivated a Faculty',
+                'user_id' => auth()->user()->id,
+                'status' => false
+            ]);
             return back()->with('success', 'Faculty Deactivated Successfully');
         // }
 

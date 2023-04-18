@@ -31,13 +31,13 @@
       @enderror
     </div>
 
-    <div class="col-12 col-md-6">
+    {{-- <div class="col-12 col-md-6">
       <label for="phone_number" class="form-label">Phone Number</label>
       <input type="text" name="phone_number" placeholder="08192564316" value="{{ old('phone_number') }}" class="form-control" id="phone_number">
       @error('phone_number')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
-    </div>
+    </div> --}}
     <div class="col-6 col-md-6">
       <label for="session_id" class="form-label">Session*</label>
       <select class="form-select-mg bg-transparent form-control" name="session_id" id="session_id">

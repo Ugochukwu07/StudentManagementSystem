@@ -25,14 +25,14 @@ class RegisterRequest extends FormRequest
             'name' => 'string|required',
             'reg_number' => 'string|required|unique:profiles,reg_number',
             'email' => 'required|email|unique:users,email',
-            // 'address' => 'string|required',
-            // 'sex' => 'string|required',
-            'phone_number' => 'string|required|unique:profiles,phone_number',
-            // 'session_id' => 'required|numeric|exists:sessions,id',
-            // 'faculty_id' => 'required|numeric|exists:faculties,id',
-            // 'department_id' => 'required|numeric|exists:departments,id',
+            'department_id' => 'required|numeric|exists:departments,id',
             'password' => 'required|string|confirmed',
             'password_confirmation' => 'required|string',
+            // 'address' => 'string|required',
+            // 'sex' => 'string|required',
+            // 'phone_number' => 'string|required|unique:profiles,phone_number',
+            // 'session_id' => 'required|numeric|exists:sessions,id',
+            // 'faculty_id' => 'required|numeric|exists:faculties,id',
             // 'level' => 'required|numeric|min:100'
         ];
     }

@@ -11,9 +11,11 @@ use App\Models\Profile;
 use App\Models\Session;
 use Illuminate\View\View;
 use App\Models\Department;
+use App\Mail\NewStudentMail;
 use App\Service\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\Student\RegisterRequest;
 
 class AuthController extends Controller
@@ -28,13 +30,6 @@ class AuthController extends Controller
         $sessions = Session::all();
         $faculties = Faculty::all();
         $departments = Department::all();
-
-        $sessionsData = new stdClass;
-        $sessionsData->id = 1; $sessionsData->year = '2021/2022';
-        $sessions = [$sessionsData];
-        $departmentsData = new stdClass;
-        $departmentsData->id = 1; $departmentsData->name = 'Computer Science';
-        $departments = [$departmentsData];
 
         return view('auth.register', compact('sessions', 'faculties', 'departments'));
     }
@@ -58,6 +53,16 @@ class AuthController extends Controller
         $profile = (new AuthService())->storeProfile($request, $user->id);
         if (!$profile)
             return redirect()->route('student.profile')->with('error', 'Sorry, something went wrung');
+
+        Feed::create([
+            'type' => 1,
+            'title' => 'Account Creation',
+            'message' => auth()->user()->name . ' just signed Up',
+            'user_id' => auth()->user()->id,
+            'status' => false
+        ]);
+        $user->profile = $profile;
+        Mail::to($user)->send(new NewStudentMail($user));
 
 
         //when everything went right

@@ -1,28 +1,48 @@
 @extends('layouts.app', ['title' => Auth::user()->name . '\'s Dashboard'])
 
 @section('content')
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <div class="container-full">
-      <!-- Main content -->
-      <section class="content">
-          <div class="row">
-              <div class="col-xl-4 mx-auto col-12">
-                  <div class="box box-body bg-primary">
-                    <h4>
-                      <span>Departments</span>
-                      <span class="float-end"><a class="btn btn-xs btn-danger" href="{{ route('admin.department.index') }}">View</a></span>
-                    </h4>
-                    <br>
-                    <p class="fs-30">{{ count($departments) }}</p>
-                    {{-- <div class="fs-16"><i class="ion-arrow-graph-down-right text-white me-1"></i> %18 decrease from last month</div> --}}
-                  </div>
-              </div>
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin.overview') }}">Home</a></li>
+            <li class="breadcrumb-item active">Faculties</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<section class="section dashboard">
+    <div class="row">
+        <!-- Left side columns -->
+        <div class="col-lg-10 mx-auto">
+            <div class="row">
+                <!-- Departments Card -->
+                <div class="col-xxl-4 mx-auto col-md-6">
+                    <div class="card info-card sales-card">
+
+                        <div class="filter me-3">
+                            <a class="btn btn-sm btn-outline-danger" href="{{ route('admin.department.index') }}">View</a>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Departments</h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-shield-check"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6>{{ count($departments) }}</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!-- End Departments Card -->
 
              @include('layouts.admin.department')
           </div>
-      </section>
-      <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+        </div>
+    </div>
+</section>
 @endsection

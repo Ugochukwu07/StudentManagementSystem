@@ -46,6 +46,25 @@
                 </li>
             </ul>
         </li>
+
+        <li class="nav-heading">Students</li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav-student" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-shield-check"></i><span>Student</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav-student" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modal-add-student">
+                    <i class="bi bi-circle"></i><span>New student</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.student.all') }}">
+                    <i class="bi bi-circle"></i><span>All Students</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
         @else
 
             <li class="nav-heading">Accounts</li>
