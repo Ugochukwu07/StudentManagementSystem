@@ -2,7 +2,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="/" class="logo d-flex align-items-center">
         <img src="{{ asset('/') }}assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">SMS</span>
       </a>
@@ -23,7 +23,9 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>{{ Auth::user()->name }}</h6>
-              <span>{{ Auth::user()->profile->reg_number }}</span>
+              @if(!Auth::user()->admin)
+                <span>{{ Auth::user()->profile->reg_number }}</span>
+              @endif
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -31,7 +33,7 @@
 
             @if(Auth::user()->admin)
                 <li>
-                    <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.main.profile') }}">
+                    <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.profile') }}">
                         <i class="bi bi-person"></i>
                         <span>My Profile</span>
                     </a>

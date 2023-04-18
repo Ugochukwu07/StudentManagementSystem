@@ -3,8 +3,10 @@
 namespace App\View\Components\Layout;
 
 use Closure;
-use Illuminate\Contracts\View\View;
+use App\Models\Faculty;
+use App\Models\Department;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class Sidebar extends Component
 {
@@ -15,6 +17,22 @@ class Sidebar extends Component
     {
         //
     }
+
+    public function faculties()
+    {
+        return Faculty::all();
+    }
+
+    // public function offices()
+    // {
+    //     return Office::all();
+    // }
+
+    public function departments()
+    {
+        return Department::all();
+    }
+
 
     /**
      * Get the view / contents that represent the component.

@@ -43,6 +43,8 @@ use PHPUnit\Event\Test\WarningTriggered;
 use PHPUnit\Event\Test\WarningTriggeredSubscriber;
 use PHPUnit\Event\TestRunner\Configured;
 use PHPUnit\Event\TestRunner\ConfiguredSubscriber;
+use PHPUnit\Event\TestRunner\DeprecationTriggered as TestRunnerDeprecationTriggered;
+use PHPUnit\Event\TestRunner\DeprecationTriggeredSubscriber as TestRunnerDeprecationTriggeredSubscriber;
 use PHPUnit\Event\TestRunner\ExecutionFinished;
 use PHPUnit\Event\TestRunner\ExecutionFinishedSubscriber;
 use PHPUnit\Event\TestRunner\ExecutionStarted;
@@ -152,6 +154,14 @@ if (class_exists(Version::class) && (int) Version::series() >= 10) {
                     }
                 },
 
+                new class($printer) extends Subscriber implements TestRunnerDeprecationTriggeredSubscriber
+                {
+                    public function notify(TestRunnerDeprecationTriggered $event): void
+                    {
+                        $this->printer()->testRunnerDeprecationTriggered($event);
+                    }
+                },
+
                 new class($printer) extends Subscriber implements TestRunnerWarningTriggeredSubscriber
                 {
                     public function notify(TestRunnerWarningTriggered $event): void
@@ -248,11 +258,7 @@ if (class_exists(Version::class) && (int) Version::series() >= 10) {
                 },
             ];
 
-            if (method_exists(Facade::class, 'instance')) { // @phpstan-ignore-line
-                Facade::instance()->registerSubscribers(...$subscribers);
-            } else {
-                Facade::registerSubscribers(...$subscribers);
-            }
+            Facade::instance()->registerSubscribers(...$subscribers);
         }
 
         /**
@@ -266,11 +272,7 @@ if (class_exists(Version::class) && (int) Version::series() >= 10) {
             if ($shouldRegister) {
                 self::$registered = true;
 
-                if (method_exists(Facade::class, 'instance')) { // @phpstan-ignore-line
-                    Facade::instance()->registerSubscriber(new self());
-                } else {
-                    Facade::registerSubscriber(new self());
-                }
+                Facade::instance()->registerSubscriber(new self());
             }
         }
     }

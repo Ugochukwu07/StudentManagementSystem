@@ -10,7 +10,7 @@
     @csrf
     <div class="col-12">
       <label for="email_reg" class="form-label">Your Email or Reg Number</label>
-      <input type="email" name="email_reg" placeholder="example@nau.com.edu || 20162728" value="{{ old('email_reg') }}" class="form-control" id="email_reg">
+      <input type="text" name="email_reg" placeholder="example@nau.com.edu || 20162728" value="{{ old('email_reg') }}" class="form-control" id="email_reg">
       @error('email_reg')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
@@ -25,7 +25,7 @@
     </div>
 
     <div class="col-12">
-      <button class="btn btn-primary w-100" type="submit">Create Account</button>
+      <button class="btn btn-primary w-100" type="submit">Login</button>
     </div>
     <div class="col-12 text-center">
       <p class="small mb-0">Don't have an account? <a href="{{ route('register') }}">Register</a></p>
