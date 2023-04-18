@@ -14,7 +14,8 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = Department::orderBy('created_at', 'desc')->get();
-        return view('admin.department.index', compact('departments'));
+        $faculties = Faculty::orderBy('created_at', 'desc')->get();
+        return view('admin.department', compact('departments', 'faculties'));
     }
 
     public function add()
@@ -28,7 +29,9 @@ class DepartmentController extends Controller
     {
         $department = Department::create([
             'name' => $request->name,
-            'faculty_id' => $request->faculty_id
+            'faculty_id' => $request->faculty_id,
+            'active' => true,
+            'added_by' => auth()->user()->id
         ]);
 
         if($department != null)
@@ -54,7 +57,8 @@ class DepartmentController extends Controller
         $updated = Department::where('id', $id)->update([
             'name' => $request->name,
             'faculty_id' => $request->faculty_id,
-            'active' => $request->active
+            'active' => $request->active ? true : false,
+            'added_by' => auth()->user()->id
         ]);
 
         if($updated)
@@ -66,12 +70,14 @@ class DepartmentController extends Controller
     public function delete($id, $soft = true)
     {
         $department = Department::find($id);
-        if($soft)
+        // if($soft){
             $department->active = true;
             $department->save();
             return back()->with('success', 'Department Deactivated Successfully');
+        // }
 
-        $department->delete();
-        return back()->with('success', 'Department Deleted Successfully');
+        // $department->delete();
+        // return back()->with('success', 'Department Deleted Successfully');
+    return back()->with('success', 'Department Deleted Successfully');
     }
 }

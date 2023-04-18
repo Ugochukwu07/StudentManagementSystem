@@ -12,23 +12,40 @@
 
       @if(Auth::user()->admin)
         <li class="nav-heading">Schools</li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-shield-check"></i><span>Faculty</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="#!" data-bs-toggle="modal" data-bs-target="#modal-add-faculty"">
-                        <i class="bi bi-circle"></i><span>New Faculty</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.faculty.index') }}">
-                        <i class="bi bi-circle"></i><span>All Faculties</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-shield-check"></i><span>Faculty</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modal-add-faculty">
+                    <i class="bi bi-circle"></i><span>New Faculty</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.faculty.index') }}">
+                    <i class="bi bi-circle"></i><span>All Faculties</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav-department" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-shield-fill-x"></i><span>Departments</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav-department" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modal-add-department">
+                    <i class="bi bi-circle"></i><span>New Department</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.department.index') }}">
+                    <i class="bi bi-circle"></i><span>All Departments</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
         @else
 
             <li class="nav-heading">Accounts</li>

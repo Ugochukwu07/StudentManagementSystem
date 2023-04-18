@@ -36,6 +36,11 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    td{
+        white-space:  nowrap !important;
+    }
+  </style>
 </head>
 
 <body>
