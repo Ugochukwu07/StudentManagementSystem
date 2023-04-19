@@ -47,6 +47,24 @@
             </ul>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav-session" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-shield-check"></i><span>Sessions</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav-session" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modal-add-session">
+                    <i class="bi bi-circle"></i><span>New Session</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.session.all') }}">
+                    <i class="bi bi-circle"></i><span>All Sessions</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
         <li class="nav-heading">Students</li>
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav-student" data-bs-toggle="collapse" href="#">
@@ -143,6 +161,37 @@
                             <label class="col-form-label col-md-12">Faculty Name</label>
                             <div class="col-md-12">
                                 <input class="form-control" value="{{ old('name') }}" type="text" name="name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="width: 100%;">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary float-end">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal center-modal fade" id="modal-add-session" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="row">
+                    @foreach ($errors->all() as $error)
+                        <div class="col-12 text-danger">{{ $error }}</div>
+                    @endforeach
+                </div>
+                <form action="{{ route('admin.session.add.save') }}" method="POST">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Session</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @csrf
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-12">Session Year</label>
+                            <div class="col-md-12">
+                                <input class="form-control" value="{{ old('year') }}" type="text" name="year" placeholder="2020/2021">
                             </div>
                         </div>
                     </div>

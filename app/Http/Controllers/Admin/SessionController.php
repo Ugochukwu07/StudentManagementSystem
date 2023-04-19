@@ -2,32 +2,33 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Session;
-use Illuminate\Contracts\View;
+use App\Models\Feed;
 use Illuminate\Http;
+use App\Models\Session;
+use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 
 class SessionController extends Controller
 {
     /**
      * all sessions on the database
      *
-     * @return View\Factory
+     * @return View
      */
-    public function all(): View\Factory
+    public function all() : View
     {
-        return view('admin.session.index', [
+        return view('admin.session', [
             'sessions' => Session::all()
         ]);
     }
-    
+
 
     /**
      * add new session to db
      *
-     * @return View\Factory
+     * @return View
      */
-    public function add(): View\Factory
+    public function add(): View
     {
         return view('admin.session.add');
     }
@@ -46,12 +47,20 @@ class SessionController extends Controller
         ]);
 
         $session = Session::create([
-            'name' => $request->year,
+            'year' => $request->year,
             'added_by' => auth()->user()->id
         ]);
 
-        if($session)
+        if($session){
+            Feed::create([
+                'type' => 1,
+                'title' => 'Session Added',
+                'message' => auth()->user()->name . ' Added a Session',
+                'user_id' => auth()->user()->id,
+                'status' => false
+            ]);
             return redirect()->route('admin.session.all')->with('success', 'Session Added Successfully');
+        }
 
         return back()->with('error', 'Sorry, something went wrung');
     }
@@ -61,9 +70,9 @@ class SessionController extends Controller
      * edit session
      *
      * @param  Session $id
-     * @return View\Factory
+     * @return View
      */
-    public function edit($id): View\Factory
+    public function edit($id): View
     {
         $session = Session::find($id);
 
@@ -89,8 +98,16 @@ class SessionController extends Controller
             'added_by' => auth()->user()->id
         ]);
 
-        if($session)
-            return redirect()->route('admin.session.all')->with('success', 'Session Added Successfully');
+        if($session){
+            Feed::create([
+                'type' => 1,
+                'title' => 'Session Updated',
+                'message' => auth()->user()->name . ' Updated a Session',
+                'user_id' => auth()->user()->id,
+                'status' => false
+            ]);
+            return redirect()->route('admin.session.all')->with('success', 'Session Updated Successfully');
+        }
 
         return back()->with('error', 'Sorry, something went wrung');
     }
@@ -106,8 +123,16 @@ class SessionController extends Controller
     {
         $session = Session::find($id);
 
-        if($session->delete())
+        if($session->delete()){
+            Feed::create([
+                'type' => 1,
+                'title' => 'Session Deleted',
+                'message' => auth()->user()->name . ' Deleted a Session',
+                'user_id' => auth()->user()->id,
+                'status' => false
+            ]);
             return redirect()->route('admin.session.all')->with('success', 'Session Deleted Successfully');
+        }
 
         return back()->with('error', 'Sorry, something went wrung');
     }
