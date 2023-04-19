@@ -119,29 +119,35 @@
                 </div><!-- End students Card -->
 
                 <!-- Admins Card -->
-            <div class="col-xxl-4 mx-auto col-md-6">
-                <div class="card info-card sales-card">
+                <div class="col-xxl-4 mx-auto col-md-6">
+                    <div class="card info-card sales-card">
 
-                    <div class="filter me-3">
-                        <a class="btn btn-sm btn-outline-danger" href="{{ route('admin.admin.all') }}">View</a>
-                    </div>
+                        <div class="filter me-3">
+                            <a class="btn btn-sm btn-outline-danger" href="{{ route('admin.admin.all') }}">View</a>
+                        </div>
 
-                    <div class="card-body">
-                        <h5 class="card-title">Admins</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Admins</h5>
 
-                        <div class="d-flex align-items-center">
-                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-person"></i>
-                            </div>
-                            <div class="ps-3">
-                                <h6>{{ count($admins) }}</h6>
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-person"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6>{{ count($admins) }}</h6>
+                                </div>
                             </div>
                         </div>
+
                     </div>
+                </div><!-- End Admin Card -->
 
-                </div>
-            </div><!-- End Admin Card -->
 
+                @include('layouts.admin.student')
+                @include('layouts.admin.department')
+                @include('layouts.admin.session')
+                @include('layouts.admin.faculty')
+                
                 <!-- Customers Card -->
                 <div class="col-xxl-4 col-xl-12">
 

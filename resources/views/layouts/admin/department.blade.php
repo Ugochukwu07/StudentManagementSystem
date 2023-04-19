@@ -1,12 +1,12 @@
 <div class="col-12">
-    <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title">Departments</h3>
+    <div class="card">
+        <div class="card-header with-border">
+            <h3 class="card-title">Departments</h3>
         </div>
-        <!-- /.box-header -->
-        <div class="box-body">
+        <!-- /.card-header -->
+        <div class="card-body">
             <div class="table-responsive">
-                <table id="departments" class="table table-bordered table-striped" style="width:100%">
+                <table id="departments" class="table table-borderless datatable table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th>S/N</th>
@@ -69,7 +69,7 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-12">
-                                                        <input type="checkbox" name="active" id="active" class="filled-in" checked />
+                                                        <input type="checkcard" name="active" id="active" class="filled-in" checked />
                                                         <label for="active">Active</label>
                                                     </div>
                                                 </div>
@@ -98,7 +98,7 @@
                 </table>
             </div>
         </div>
-        <!-- /.box-body -->
+        <!-- /.card-body -->
     </div>
-    <!-- /.box -->
+    <!-- /.card -->
 </div>

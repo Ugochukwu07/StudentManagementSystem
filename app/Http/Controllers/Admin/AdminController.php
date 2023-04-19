@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Feed;
 use App\Models\User;
 use Illuminate\Http\Request;
+use PHPUnit\Metadata\BackupGlobals;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use PHPUnit\Metadata\BackupGlobals;
 
 class AdminController extends Controller
 {
@@ -39,6 +40,13 @@ class AdminController extends Controller
 
 
         //when everything went right
+        Feed::create([
+            'type' => 1,
+            'title' => 'Admin Account Creation',
+            'message' => auth()->user()->name . ' just add an admin',
+            'user_id' => auth()->user()->id,
+            'status' => false
+        ]);
         return redirect()->route('admin.admin.all')->with('success', 'Admin Account Created Successfully');
     }
 
@@ -61,6 +69,13 @@ class AdminController extends Controller
 
 
         //when everything went right
+        Feed::create([
+            'type' => 1,
+            'title' => 'Admin Account Update',
+            'message' => auth()->user()->name . ' just updated an admin account',
+            'user_id' => auth()->user()->id,
+            'status' => false
+        ]);
         return redirect()->route('admin.admin.all')->with('success', 'Admin Account Updated Successfully');
     }
 
@@ -68,6 +83,13 @@ class AdminController extends Controller
     {
         $admin = User::find($id);
         $admin->delete();
+        Feed::create([
+            'type' => 1,
+            'title' => 'Admin Account Deletion',
+            'message' => auth()->user()->name . ' just deleted an admin account',
+            'user_id' => auth()->user()->id,
+            'status' => false
+        ]);
 
         return redirect()->route('admin.admin.all')->with('success', 'Admin Account Deleted Successfully');
     }

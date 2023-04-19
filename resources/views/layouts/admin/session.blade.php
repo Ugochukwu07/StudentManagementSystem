@@ -1,25 +1,25 @@
 <div class="col-12">
-    <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title">Sessions</h3>
+    <div class="card recent-sales overflow-auto">
+        <div class="card-header with-border">
+            <h3 class="card-title">Sessions</h3>
         </div>
-        <!-- /.box-header -->
-        <div class="box-body">
+        <!-- /.card-header -->
+        <div class="card-body">
             <div class="table-responsive">
-                <table id="session" class="table table-bordered datatable table-striped" style="width:100%">
+                <table id="sessions" class="table table-bordered datatable table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th>S/N</th>
-                            <th>Year</th>
-                            <th>Added By</th>
-                            <th>Date</th>
-                            <th>Actions</th>
+                            <th scope="col">S/N</th>
+                            <th scope="col">Year</th>
+                            <th scope="col">Added By</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($sessions as $key => $session)
                             <tr>
-                                <td>{{ $key + 1 }}</td>
+                                <td scope="row">{{ $key + 1 }}</td>
                                 <td>{{ $session->year }}</td>
                                 <td>{{ $session->addedBy->name }}</td>
                                 <td>{{ date('F j, Y h:i:s A', strtotime($session->created_at)) }}</td>
@@ -61,7 +61,7 @@
                             </div>
                         @endforeach
                     </tbody>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>S/N</th>
                             <th>Year</th>
@@ -69,11 +69,11 @@
                             <th>Date</th>
                             <th>Actions</th>
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                 </table>
             </div>
         </div>
-        <!-- /.box-body -->
+        <!-- /.card-body -->
     </div>
-    <!-- /.box -->
+    <!-- /.card -->
 </div>

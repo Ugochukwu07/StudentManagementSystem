@@ -6,7 +6,7 @@
         <!-- /.card-header -->
         <div class="card-body">
             <div class="table-responsive">
-                <table id="faculties" class="table table-bordered datatable table-striped" style="width:100%">
+                <table id="faculty" class="table table-bordered datatable table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th>S/N</th>

@@ -82,7 +82,7 @@ class StudentController extends Controller
         Feed::create([
             'type' => 1,
             'title' => 'Account Updated',
-            'message' => auth()->user()->name . ' just updated a new student',
+            'message' => auth()->user()->name . ' just updated a student account',
             'user_id' => auth()->user()->id,
             'status' => false
         ]);
