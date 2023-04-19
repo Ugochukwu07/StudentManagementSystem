@@ -58,6 +58,9 @@ Route::controller(ScheduleController::class)->name('schedule.')->prefix('schedul
 
     Route::get('/all/{department_id}/{session_id}', 'allBySessionAndDepartment')->name('all.session.department');
 
+    Route::get('/choose', 'choose')->name('choose');
+    Route::post('/choose/save', 'chooseSave')->name('choose.save');
+
     Route::get('/add', 'add')->name('add');
     Route::post('/add/save', 'addSave')->name('add.save');
 

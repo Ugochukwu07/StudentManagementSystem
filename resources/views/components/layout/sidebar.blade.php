@@ -83,6 +83,23 @@
                 </li>
             </ul>
         </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav-schedule" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-calendar-date"></i><span>Schedules</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav-schedule" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ route('admin.schedule.choose') }}">
+                    <i class="bi bi-circle"></i><span>New Schedule</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.schedule.all') }}">
+                    <i class="bi bi-circle"></i><span>All Schedules</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
         <li class="nav-heading">Admins</li>
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav-admin" data-bs-toggle="collapse" href="#">

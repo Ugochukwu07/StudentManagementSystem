@@ -6,7 +6,6 @@ use Illuminate\Http;
 use App\Models\Session;
 use App\Models\Schedule;
 use App\Models\Department;
-use Illuminate\Contracts\View;
 use App\Http\Controllers\Controller;
 use App\Service\Admin\ScheduleService;
 use App\Http\Requests\Admin\Schedule\AddRequest;
@@ -27,9 +26,9 @@ class ScheduleController extends Controller
     /**
      * all schedules for all students on the database
      *
-     * @return View\Factory
+     * @return View
      */
-    public function all(): View\Factory
+    public function all()
     {
         return view('admin.session.index', [
             'schedules' => (new ScheduleService())->allSchedules()
@@ -43,7 +42,7 @@ class ScheduleController extends Controller
      * @param  mixed $department_id
      * @return View\Factory
      */
-    public function allBySessionAndDepartment($session_id, $department_id): View\Factory
+    public function allBySessionAndDepartment($session_id, $department_id)
     {
         return view('admin.session.index', [
             'schedule' => Schedule::where('session_id', $session_id)->where('department_id', $department_id)->get()
@@ -56,7 +55,7 @@ class ScheduleController extends Controller
      *
      * @return View\Factory
      */
-    public function add(): View\Factory
+    public function add()
     {
         $departments = Department::all();
         $sessions = Session::all();
@@ -85,14 +84,48 @@ class ScheduleController extends Controller
         return back()->with('error', 'Sorry, something went wrong');
     }
 
+    /**
+     * choose new schedule to db
+     *
+     * @return View\Factory
+     */
+    public function choose()
+    {
+        $departments = Department::all();
+        $sessions = Session::all();
+
+        return view('admin.schedule.choose', compact('departments', 'sessions'));
+    }
+
+
+    /**
+     * Save schedule to db
+     *
+     * @param  mixed $request
+     * @return Http\RedirectResponse
+     */
+    public function chooseSave(Http\Request $request): Http\RedirectResponse
+    {
+        $schedule = (new ScheduleService())->storeSchedule($request);
+
+        if($schedule)
+            return redirect()
+                    ->route('admin.schedule.all.session.department', [
+                            'department_id' => $schedule->department_id,
+                            'session_id' => $schedule->session_id
+                    ])->with('success', 'Schedule Added Successfully');
+
+        return back()->with('error', 'Sorry, something went wrong');
+    }
+
 
     /**
      * edit Schedule
      *
      * @param  Schedule $id
-     * @return View\Factory
+     * @return View
      */
-    public function edit($id): View\Factory
+    public function edit($id)
     {
 
         $departments = Department::all();
