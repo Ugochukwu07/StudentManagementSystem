@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'STudents'])
+@extends('layouts.app', ['title' => 'Students'])
 
 @section('content')
 
@@ -14,6 +14,10 @@
 
 <section class="section dashboard">
     <div class="row">
+        @foreach ($errors->all() as $error)
+            <div class="col-md-6 my-1 text-danger bg-danger-light p-2">*{{ $error }}</div>
+            {{-- <hr> --}}
+        @endforeach
         <!-- Left side columns -->
         <div class="col-lg-10 mx-auto">
             <div class="row">

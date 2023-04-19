@@ -5,6 +5,7 @@ namespace App\View\Components\Layout;
 use Closure;
 use App\Models\Faculty;
 use App\Models\Department;
+use App\Models\Session;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
@@ -23,10 +24,10 @@ class Sidebar extends Component
         return Faculty::all();
     }
 
-    // public function offices()
-    // {
-    //     return Office::all();
-    // }
+    public function sessions()
+    {
+        return Session::all();
+    }
 
     public function departments()
     {

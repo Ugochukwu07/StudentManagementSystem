@@ -86,7 +86,7 @@
         <li class="nav-heading">Admins</li>
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav-admin" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-person-badge"></i><span>Admin</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-person-badge"></i><span>Admins</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav-admin" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -286,6 +286,17 @@
                                     <option>Select Department</option>
                                     @foreach ($departments() as $department)
                                         <option {{ (old('department_id') == $department->id) ? 'selected' : '' }} value="{{ $department->id }}">{{ $department->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-12">Session</label>
+                            <div class="col-md-12">
+                                <select name="session_id" class="form-select">
+                                    <option>Select session</option>
+                                    @foreach ($sessions() as $session)
+                                        <option {{ (old('session_id') == $session->id) ? 'selected' : '' }} value="{{ $session->id }}">{{ $session->year }}</option>
                                     @endforeach
                                 </select>
                             </div>

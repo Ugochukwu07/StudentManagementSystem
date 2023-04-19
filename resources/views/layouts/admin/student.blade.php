@@ -23,8 +23,8 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $student->name }}</td>
-                                <td>{{ $student->profile->reg_number }}</td>
-                                <td>{{ $student->profile->department->name }}</td>
+                                <td>{{ $student->profile->reg_number ?? 'Error' }}</td>
+                                <td>{{ $student->profile->department->name ?? 'Error' }}</td>
                                 <td>{{ $student->email }}</td>
                                 <td>{{ date('F j, Y h:i:s A', strtotime($student->created_at)) }}</td>
                                 <td>
@@ -68,7 +68,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-form-label col-md-12">Reg Number*</label>
                                                     <div class="col-md-12">
-                                                        <input class="form-control" value="{{ old('reg_number') ?? $student->profile->reg_number }}" placeholder="201754289" type="text" name="reg_number">
+                                                        <input class="form-control" value="{{ old('reg_number') ?? $student->profile->reg_number ?? 'Error' }}" placeholder="201754289" type="text" name="reg_number">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
