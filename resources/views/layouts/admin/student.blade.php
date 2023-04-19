@@ -13,6 +13,7 @@
                             <th>Name</th>
                             <th>Reg Number</th>
                             <th>Department</th>
+                            <th>Session</th>
                             <th>Email</th>
                             <th>Date</th>
                             <th>Actions</th>
@@ -25,6 +26,7 @@
                                 <td>{{ $student->name }}</td>
                                 <td>{{ $student->profile->reg_number ?? 'Error' }}</td>
                                 <td>{{ $student->profile->department->name ?? 'Error' }}</td>
+                                <td>{{ $student->profile->session->year ?? 'Error' }}</td>
                                 <td>{{ $student->email }}</td>
                                 <td>{{ date('F j, Y h:i:s A', strtotime($student->created_at)) }}</td>
                                 <td>
@@ -59,6 +61,18 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-md-12">Session</label>
+                                                    <div class="col-md-12">
+                                                        <select class="form-select-mg bg-transparent form-control" name="session_id" id="session_id">
+                                                            <option>Select Session</option>
+                                                            @foreach ($sessions as $session)
+                                                                <option {{ (($student->session_id == $session->id) || $session->id == old('session_id')) ? 'selected' : '' }} value="{{ $session->id }}">{{ $session->year }}</option>
+                                                            @endforeach
+                                                          </select>
+                                                    </div>
+                                                </div>
+
                                                 <div class="form-group row">
                                                     <label class="col-form-label col-md-12">Full Name*</label>
                                                     <div class="col-md-12">
@@ -106,6 +120,7 @@
                             <th>Name</th>
                             <th>Reg Number</th>
                             <th>Department</th>
+                            <th>Session</th>
                             <th>Email</th>
                             <th>Date</th>
                             <th>Actions</th>

@@ -29,6 +29,12 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class, 'user_id', 'id');
     }
 
+    public function getClassRoomAttribute()
+    {
+        $class = ClassRoom::where('department_id', $this->profile->department_id)->where('session_id', $this->profile->session_id)->first();
+        return $class;
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

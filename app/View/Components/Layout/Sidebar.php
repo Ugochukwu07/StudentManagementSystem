@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Layout;
 
+use App\Models\ClassRoom;
 use Closure;
 use App\Models\Faculty;
 use App\Models\Department;
@@ -32,6 +33,11 @@ class Sidebar extends Component
     public function departments()
     {
         return Department::all();
+    }
+
+    public function classes()
+    {
+        return ClassRoom::all();
     }
 
 

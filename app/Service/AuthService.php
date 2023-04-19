@@ -4,6 +4,7 @@ namespace App\Service;
 use App\Models\Feed;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\ClassRoom;
 use Illuminate\Support\Facades\Hash;
 
 class AuthService{
@@ -42,6 +43,8 @@ class AuthService{
      */
     public function storeProfile($data, $user_id): Profile
     {
+        $class = ClassRoom::where('department_id', $data->department_id)->where('session_id', $data->session_id)->first();
+
         $profile = Profile::create([
             'reg_number' => $data->reg_number,
             'phone_number' => $data->phone_number,
@@ -51,6 +54,7 @@ class AuthService{
             'faculty_id' => $data->faculty_id ?? 1,
             'department_id' => $data->department_id,
             'user_id' => $user_id,
+            'class_id' => $class->id ?? 1,
         ]);
 
         return $profile;

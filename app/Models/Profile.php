@@ -11,7 +11,7 @@ class Profile extends Model
 
     protected $fillable = [
         'reg_number', 'phone_number' , 'address',
-        'sex', 'session_id', 'faculty_id',
+        'sex', 'session_id', 'faculty_id', 'class_id',
         'department_id', 'user_id', 'level'
     ];
 
@@ -23,5 +23,10 @@ class Profile extends Model
     public function department()
     {
         return $this->hasOne(Department::class, 'id', 'department_id');
+    }
+
+    public function classRoom()
+    {
+        return $this->hasOne(ClassRoom::class, 'id', 'class_id');
     }
 }

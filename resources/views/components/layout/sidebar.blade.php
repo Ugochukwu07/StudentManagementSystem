@@ -64,6 +64,23 @@
                 </li>
             </ul>
         </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav-class" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-house"></i><span>Classes</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav-class" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modal-add-class">
+                    <i class="bi bi-circle"></i><span>New Class</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.class.all') }}">
+                    <i class="bi bi-circle"></i><span>All Classs</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
 
         <li class="nav-heading">Students</li>
         <li class="nav-item">
@@ -89,7 +106,7 @@
             </a>
             <ul id="components-nav-schedule" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ route('admin.schedule.choose') }}">
+                    <a href="">
                     <i class="bi bi-circle"></i><span>New Schedule</span>
                     </a>
                 </li>
@@ -280,6 +297,61 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal center-modal fade" data-backdrop="static" data-keyboard="false"  aria-labelledby="staticBackdropLabel" aria-hidden="true" id="modal-add-class" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content" style="overflow-y: scroll">
+                <div class="row">
+                    @foreach ($errors->all() as $error)
+                        <div class="col-12 text-danger">{{ $error }}</div>
+                    @endforeach
+                </div>
+                <div class="modal-header">
+                    <h5 class="modal-title">Add a Class</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('admin.class.add.save') }}" method="POST">
+                    <div class="modal-body">
+                        @csrf
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-12">Class Name</label>
+                            <div class="col-md-12">
+                                <input class="form-control" value="{{ old('name') }}" type="text" name="name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-12">Department</label>
+                            <div class="col-md-12">
+                                <select name="department_id" class="form-select">
+                                    <option>Select Department</option>
+                                    @foreach ($departments() as $department)
+                                        <option {{ (old('department_id') == $department->id) ? 'selected' : '' }} value="{{ $department->id }}">{{ $department->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-12">Session</label>
+                            <div class="col-md-12">
+                                <select name="session_id" class="form-select">
+                                    <option>Select session</option>
+                                    @foreach ($sessions() as $session)
+                                        <option {{ (old('session_id') == $session->id) ? 'selected' : '' }} value="{{ $session->id }}">{{ $session->year }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer modal-footer-uniform" style="width: 100%;">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary float-end">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- Modal -->
     <div class="modal center-modal fade" data-backdrop="static" data-keyboard="false"  aria-labelledby="staticBackdropLabel" aria-hidden="true" id="modal-add-student" tabindex="-1">
         <div class="modal-dialog modal-dialog-scrollable">
@@ -296,6 +368,18 @@
                 <form action="{{ route('admin.student.add.save') }}" method="POST">
                     <div class="modal-body">
                         @csrf
+
+                        {{-- <div class="form-group row">
+                            <label class="col-form-label col-md-12">Classes</label>
+                            <div class="col-md-12">
+                                <select name="class_id" class="form-select">
+                                    <option>Select Class</option>
+                                    @foreach ($classes() as $class)
+                                        <option {{ (old('class_id') == $class->id) ? 'selected' : '' }} value="{{ $class->id }}">{{ $class->name . '-' . $class->session->year }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div> --}}
                         <div class="form-group row">
                             <label class="col-form-label col-md-12">Department</label>
                             <div class="col-md-12">
@@ -357,6 +441,7 @@
             </div>
         </div>
     </div>
+
     <!-- Modal -->
     <div class="modal center-modal fade" data-backdrop="static" data-keyboard="false"  aria-labelledby="staticBackdropLabel" aria-hidden="true" id="modal-add-admin" tabindex="-1">
         <div class="modal-dialog modal-dialog-scrollable">

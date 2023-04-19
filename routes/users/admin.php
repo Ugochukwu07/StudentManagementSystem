@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ClassController;
 use App\Http\Controllers\Admin\ResultController;
 use App\Http\Controllers\Admin\FacultyController;
 use App\Http\Controllers\Admin\SessionController;
@@ -41,6 +42,18 @@ Route::controller(StudentController::class)->name('student.')->prefix('student')
     Route::get('/delete/{id}', 'delete')->name('delete');
 });
 
+Route::controller(ClassController::class)->name('class.')->prefix('class')->group(function(){
+    Route::get('/', 'all')->name('all');
+
+    Route::get('/add', 'add')->name('add');
+    Route::post('/add/save', 'addSave')->name('add.save');
+
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::post('/edit/save/{id}', 'editSave')->name('edit.save');
+
+    Route::get('/delete/{id}', 'delete')->name('delete');
+});
+
 Route::controller(ResultController::class)->name('result.')->prefix('result')->group(function(){
     Route::get('/', 'all')->name('all');
 
@@ -57,9 +70,6 @@ Route::controller(ScheduleController::class)->name('schedule.')->prefix('schedul
     Route::get('/', 'all')->name('all');
 
     Route::get('/all/{department_id}/{session_id}', 'allBySessionAndDepartment')->name('all.session.department');
-
-    Route::get('/choose', 'choose')->name('choose');
-    Route::post('/choose/save', 'chooseSave')->name('choose.save');
 
     Route::get('/add', 'add')->name('add');
     Route::post('/add/save', 'addSave')->name('add.save');

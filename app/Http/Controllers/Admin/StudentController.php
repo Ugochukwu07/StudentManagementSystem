@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Feed;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Session;
 use App\Models\Department;
 use App\Mail\NewStudentMail;
 use App\Service\AuthService;
@@ -20,8 +21,9 @@ class StudentController extends Controller
     {
         $students = User::where('admin', 0)->get();
         $departments = Department::all();
+        $sessions = Session::all();
 
-        return view('admin.student', compact('students', 'departments'));
+        return view('admin.student', compact('students', 'departments', 'sessions'));
     }
 
     public function addSave(RegisterRequest $request)
@@ -57,6 +59,7 @@ class StudentController extends Controller
             'reg_number' => 'string|required|unique:profiles,reg_number,'. $pro->id,
             'email' => 'required|email|unique:users,email,' . $id,
             'department_id' => 'nullable|numeric|exists:departments,id',
+            'session_id' => 'nullable|numeric|exists:sessions,id',
             'password' => 'nullable|string|confirmed',
             'password_confirmation' => 'nullable|string',
         ]);
@@ -72,6 +75,7 @@ class StudentController extends Controller
 
         $profile = Profile::where('user_id', $id)->update([
             'reg_number' => $request->reg_number,
+            'session_id' => $request->session_id,
             'department_id' => $request->department_id,
         ]);
         if (!$profile)
