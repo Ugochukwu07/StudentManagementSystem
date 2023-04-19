@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::table('profile', function(Blueprint $table){
+        Schema::table('profiles', function(Blueprint $table){
             $table->unsignedBigInteger('class_id')->default(1);
         });
     }
@@ -32,7 +32,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('class_rooms');
 
-        Schema::table('profile', function(Blueprint $table){
+        Schema::table('profiles', function(Blueprint $table){
             $table->dropColumn(['class_id']);//->default(1);
         });
     }
