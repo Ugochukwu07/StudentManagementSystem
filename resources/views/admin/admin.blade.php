@@ -7,7 +7,29 @@
       <!-- Main content -->
       <section class="content">
           <div class="row">
-            <x-Admin.Admin.Overview-Component />
+            <!-- Admins Card -->
+            <div class="col-xxl-4 mx-auto col-md-6">
+                <div class="card info-card sales-card">
+
+                    <div class="filter me-3">
+                        <a class="btn btn-sm btn-outline-danger" href="{{ route('admin.admin.all') }}">View</a>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">Admins</h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-person"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>{{ count($admins) }}</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- End Admin Card -->
 
             <div class="col-12">
                 <div class="box">

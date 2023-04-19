@@ -13,8 +13,9 @@ class MainService{
         $departments = Department::all();
         $faculties = Faculty::all();
         $students = User::where('admin', 0)->get();
+        $admins = User::where('admin', 1)->get();
         $sessions = Session::all();
 
-        return compact('departments', 'faculties', 'students', 'sessions');
+        return compact('departments', 'faculties', 'students', 'sessions', 'admins');
     }
 }

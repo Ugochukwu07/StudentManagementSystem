@@ -1,10 +1,10 @@
 <div class="col-12">
-    <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title">Students</h3>
+    <div class="card">
+        <div class="card-header with-border">
+            <h3 class="card-title">Students</h3>
         </div>
-        <!-- /.box-header -->
-        <div class="box-body">
+        <!-- /.card-header -->
+        <div class="card-body">
             <div class="table-responsive">
                 <table id="students" class="table table-bordered table-striped" style="width:100%">
                     <thead>
@@ -114,7 +114,7 @@
                 </table>
             </div>
         </div>
-        <!-- /.box-body -->
+        <!-- /.card-body -->
     </div>
-    <!-- /.box -->
+    <!-- /.card -->
 </div>

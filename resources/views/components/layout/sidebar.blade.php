@@ -68,7 +68,7 @@
         <li class="nav-heading">Students</li>
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav-student" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-shield-check"></i><span>Student</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-people"></i><span>Students</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav-student" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -79,6 +79,24 @@
                 <li>
                     <a href="{{ route('admin.student.all') }}">
                     <i class="bi bi-circle"></i><span>All Students</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-heading">Admins</li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav-admin" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-person-badge"></i><span>Admin</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav-admin" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="#!" data-bs-toggle="modal" data-bs-target="#modal-add-admin">
+                    <i class="bi bi-circle"></i><span>New Admin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.admin.all') }}">
+                    <i class="bi bi-circle"></i><span>All Admins</span>
                     </a>
                 </li>
             </ul>
