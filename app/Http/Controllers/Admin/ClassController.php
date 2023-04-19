@@ -11,6 +11,14 @@ use App\Http\Controllers\Controller;
 
 class ClassController extends Controller
 {
+    public function all()
+    {
+        $departments = Department::orderBy('created_at', 'desc')->get();
+        $sessions = Session::orderBy('created_at', 'desc')->get();
+        $classes = ClassRoom::orderBy('created_at', 'desc')->get();
+
+        return view('admin.class', compact('departments', 'sessions', 'classes'));
+    }
     public function add()
     {
         $departments = Department::all();
@@ -31,6 +39,7 @@ class ClassController extends Controller
             'name' => $request->name,
             'department_id' => $request->department_id,
             'session_id' => $request->session_id,
+            'added_by' => auth()->user()->id
         ]);
 
         if(!$class)

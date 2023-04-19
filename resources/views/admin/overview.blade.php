@@ -94,6 +94,30 @@
                     </div>
                 </div><!-- End Sessions Card -->
 
+                <!-- Classes Card -->
+                <div class="col-xxl-4 mx-auto col-md-6">
+                    <div class="card info-card sales-card">
+
+                        <div class="filter me-3">
+                            <a class="btn btn-sm btn-outline-danger" href="{{ route('admin.class.all') }}">View</a>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Classes</h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-shield-check"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6>{{ count($classes) }}</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!-- End Classes Card -->
+
                 <!-- Students Card -->
                 <div class="col-xxl-4 mx-auto col-md-6">
                     <div class="card info-card sales-card">
