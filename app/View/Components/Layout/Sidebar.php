@@ -40,6 +40,13 @@ class Sidebar extends Component
         return ClassRoom::all();
     }
 
+    public function days()
+    {
+        return [
+            "Sunday", 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+        ];
+    }
+
 
     /**
      * Get the view / contents that represent the component.

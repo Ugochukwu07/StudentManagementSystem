@@ -40,7 +40,7 @@ class ScheduleController extends Controller
      *
      * @param  mixed $session_id
      * @param  mixed $department_id
-     * @return View\Factory
+     * @return View\View
      */
     public function allBySessionAndDepartment($session_id, $department_id)
     {
@@ -53,7 +53,7 @@ class ScheduleController extends Controller
     /**
      * add new schedule to db
      *
-     * @return View\Factory
+     * @return View\View
      */
     public function add()
     {
@@ -72,6 +72,7 @@ class ScheduleController extends Controller
      */
     public function addSave(AddRequest $request): Http\RedirectResponse
     {
+        dd($request->all());
         $schedule = (new ScheduleService())->storeSchedule($request);
 
         if($schedule)
@@ -87,7 +88,7 @@ class ScheduleController extends Controller
     /**
      * choose new schedule to db
      *
-     * @return View\Factory
+     * @return View\View
      */
     public function choose()
     {

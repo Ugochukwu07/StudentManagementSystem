@@ -106,7 +106,7 @@
             </a>
             <ul id="components-nav-schedule" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="">
+                    <a href="!#" data-bs-toggle="modal" data-bs-target="#modal-add-schedule">
                     <i class="bi bi-circle"></i><span>New Schedule</span>
                     </a>
                 </li>
@@ -443,6 +443,87 @@
     </div>
 
     <!-- Modal -->
+    <div class="modal center-modal fade" data-backdrop="static" data-keyboard="false"  aria-labelledby="staticBackdropLabel" aria-hidden="true" id="modal-add-schedule" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content" style="overflow-y: scroll">
+                <div class="row">
+                    @foreach ($errors->all() as $error)
+                        <div class="col-12 text-danger">{{ $error }}</div>
+                    @endforeach
+                </div>
+                <div class="modal-header">
+                    <h5 class="modal-title">Add a Schedule/TimeTable</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('admin.schedule.add.save') }}" method="POST">
+                    <div class="modal-body">
+                        @csrf
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-12">Classes</label>
+                            <div class="col-md-12">
+                                <select name=" " class="form-select">
+                                    <option>Select Class</option>
+                                    @foreach ($classes() as $class)
+                                        <option {{ (old('class_id') == $class->id) ? 'selected' : '' }} value="{{ $class->id }}">{{ $class->name . '-' . $class->session->year }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label class="col-form-label">Start Time*</label>
+                                <input type="time" name="start_time" value="{{ old('start_time') }}" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="col-form-label">End Time*</label>
+                                <input type="time" name="end_time" value="{{ old('end_time') }}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-12">Day*</label>
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <select name="day" class="form-select">
+                                        <option>Select Day</option>
+                                        @foreach ($days() as $key => $day)
+                                            <option {{ (old('day') == $key) ? 'selected' : '' }} value="{{ $key }}">{{ $day }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="course_code" class="col-form-label">Course Code*</label>
+                                <input class="form-control" value="{{ old('course_code') }}" type="text" placeholder="CSC 101" name="course_code">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="course" class="col-form-label">Course*</label>
+                                <input class="form-control" value="{{ old('course') }}" type="text" placeholder="Introduction to Programming" name="course">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-12">Venue</label>
+                            <div class="col-md-12">
+                                <input class="form-control" value="{{ old('venue') }}" placeholder="Venue of Lecture" type="text" name="venue">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-12">Lecturer Name</label>
+                            <div class="col-md-12">
+                                <input class="form-control" value="{{ old('lecture') }}" placeholder="Karl Max" type="text" name="lecture">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer modal-footer-uniform" style="width: 100%;">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary float-end">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
     <div class="modal center-modal fade" data-backdrop="static" data-keyboard="false"  aria-labelledby="staticBackdropLabel" aria-hidden="true" id="modal-add-admin" tabindex="-1">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content" style="overflow-y: scroll">
@@ -491,6 +572,7 @@
             </div>
         </div>
     </div>
+
     {{-- <!-- Modal -->
     <div class="modal center-modal fade" id="modal-add-offices" tabindex="-1">
         <div class="modal-dialog">

@@ -22,12 +22,13 @@ class AddRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'session_id' => 'require|numeric|exists:sessions,id',
-            'department_id' => 'require|numeric|exists:departments,id',
+            // 'session_id' => 'require|numeric|exists:sessions,id',
+            // 'department_id' => 'require|numeric|exists:departments,id',
+            'class' => 'required|numeric|exists:class_rooms,id',
             'course' => 'required|string',
             'course_code' => 'required|string',
-            'start_time' => 'required|time',
-            'end_time' => 'required|time',
+            'start_time' => 'required|date_format:"h:i"',
+            'end_time' => 'required|date_format:"h:i"',
             'day' => 'required|numeric',
             'venue' => 'required|string',
             'lecture' => 'required|string'
