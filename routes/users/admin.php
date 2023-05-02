@@ -78,6 +78,10 @@ Route::controller(ScheduleController::class)->name('schedule.')->prefix('schedul
     Route::post('/edit/save/{id}', 'editSave')->name('edit.save');
 
     Route::get('/delete/{id}', 'delete')->name('delete');
+
+    Route::prefix('class')->name('class.')->group(function(){
+        Route::get('/{id}', 'allByClass')->name('all');
+    });
 });
 
 

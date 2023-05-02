@@ -29,6 +29,7 @@
                                 <td>{{ date('F j, Y h:i:s A', strtotime($class->created_at)) }}</td>
                                 <td>
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit-class-{{ $class->id }}" class="btn my-1 btn-sm btn-info">Edit</button>
+                                    <a href="{{ route('admin.schedule.class.all', ['id' => $class->id]) }}" class="btn my-1 btn-sm btn-primary">Schedules</a>
                                     <a href="{{ route('admin.class.delete', ['id' => $class->id]) }}" class="btn my-1 btn-sm btn-danger">Delete</a>
                                 </td>
                             </tr>
@@ -76,12 +77,12 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
+                                                {{-- <div class="form-group row">
                                                     <label class="col-form-label col-md-12">class Year</label>
                                                     <div class="col-md-12">
                                                         <input class="form-control" value="{{ old('year') ?? $class->year }}" type="text" name="year" placeholder="2020/2021">
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                             <div class="modal-footer" style="width: 100%;">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>

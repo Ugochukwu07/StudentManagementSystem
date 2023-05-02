@@ -22,14 +22,14 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'reg_number' => 'string|required|unique:profiles,reg_number',
+            'reg_number' => 'string|required', //|unique:profiles,reg_number,' . $this->id,
             'address' => 'string|required',
             'sex' => 'string|required',
-            'phone_number' => 'string|required|unique:profiles,phone_number',
-            'session_id' => 'require|numeric|exists:sessions,id',
-            'faculty_id' => 'require|numeric|exists:faculties,id',
-            'department_id' => 'require|numeric|exists:departments,id',
-            'level' => 'required|numeric|min:100'
+            'phone_number' => 'string|required', //|unique:profiles,phone_number,' . $this->id,
+            'session_id' => 'required|numeric|exists:sessions,id',
+            // 'faculty_id' => 'required|numeric|exists:faculties,id',
+            'department_id' => 'required|numeric|exists:departments,id',
+            // 'level' => 'required|numeric|min:100'
         ];
     }
 }

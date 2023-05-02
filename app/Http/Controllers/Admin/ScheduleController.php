@@ -9,6 +9,7 @@ use App\Models\Department;
 use App\Http\Controllers\Controller;
 use App\Service\Admin\ScheduleService;
 use App\Http\Requests\Admin\Schedule\AddRequest;
+use App\Models\ClassRoom;
 
 class ScheduleController extends Controller
 {
@@ -72,15 +73,13 @@ class ScheduleController extends Controller
      */
     public function addSave(AddRequest $request): Http\RedirectResponse
     {
-        dd($request->all());
         $schedule = (new ScheduleService())->storeSchedule($request);
 
         if($schedule)
             return redirect()
-                    ->route('admin.schedule.all.session.department', [
-                            'department_id' => $schedule->department_id,
-                            'session_id' => $schedule->session_id
-                    ])->with('success', 'Schedule Added Successfully');
+                    ->route('admin.schedule.class.all', [
+                            'id' => $request->class
+                        ])->with('success', 'Schedule Added Successfully');
 
         return back()->with('error', 'Sorry, something went wrong');
     }
@@ -175,5 +174,21 @@ class ScheduleController extends Controller
             return redirect()->route('admin.schedule.all')->with('success', 'Schedule Deleted Successfully');
 
         return back()->with('error', 'Sorry, something went wrung');
+    }
+
+    public function allByClass($id)
+    {
+        $class = ClassRoom::find($id);
+        $schedules = Schedule::where('department_id', $class->department_id)->where('session_id', $class->session_id)->get();
+        $sortedSchedules = $schedules->sortBy(function($schedule){
+            return [
+                [$schedule->day, 'asc'],
+                [$schedule->start_time, 'asc']
+            ];
+        });
+
+        return view('admin.schedule.class', [
+            'schedules' => $sortedSchedules
+        ]);
     }
 }

@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Artisan;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 })->name('home');
+
 Route::get('/home', function () {
     return view('welcome');
 })->name('home');

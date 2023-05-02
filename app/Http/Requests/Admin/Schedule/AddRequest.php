@@ -27,8 +27,8 @@ class AddRequest extends FormRequest
             'class' => 'required|numeric|exists:class_rooms,id',
             'course' => 'required|string',
             'course_code' => 'required|string',
-            'start_time' => 'required|date_format:"h:i"',
-            'end_time' => 'required|date_format:"h:i"',
+            'start_time' => 'required|date_format:"H:i"',
+            'end_time' => 'required|date_format:"H:i"',
             'day' => 'required|numeric',
             'venue' => 'required|string',
             'lecture' => 'required|string'

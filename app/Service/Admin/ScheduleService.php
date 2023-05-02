@@ -1,6 +1,7 @@
 <?php
 namespace App\Service\Admin;
 
+use App\Models\ClassRoom;
 use App\Models\Session;
 use App\Models\Schedule;
 use App\Models\Department;
@@ -42,9 +43,11 @@ class ScheduleService{
      */
     public function storeSchedule($data): Schedule
     {
+        $class = ClassRoom::find($data->class);
+
         $schedule = Schedule::create([
-            'session_id' => $data->session_id,
-            'department_id' => $data->department_id,
+            'session_id' => $class->session_id,
+            'department_id' => $class->department_id,
             'course' => $data->course,
             'course_code' => $data->course_code,
             'start_time' => $data->start_time,
@@ -52,7 +55,8 @@ class ScheduleService{
             'day' => $data->day,
             'venue' => $data->venue,
             'lecture' => $data->lecture,
-            'added_by' => auth()->user()->id
+            'added_by' => auth()->user()->id,
+            'canceled' => false
         ]);
 
         return $schedule;
@@ -66,9 +70,11 @@ class ScheduleService{
      */
     public function updateSchedule($data, $id): bool
     {
+        $class = ClassRoom::find($data->class);
+
         $schedule = Schedule::where('id', $id)->update([
-            'session_id' => $data->session_id,
-            'department_id' => $data->department_id,
+            'session_id' => $class->session_id,
+            'department_id' => $class->department_id,
             'course' => $data->course,
             'course_code' => $data->course_code,
             'start_time' => $data->start_time,

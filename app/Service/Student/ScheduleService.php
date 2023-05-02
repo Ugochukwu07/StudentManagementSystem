@@ -31,7 +31,7 @@ class ScheduleService{
      */
     public function getSchedules(User $user_id):array
     {
-        $profile = Profile::where('user_id', $user_id)->first();
+        $profile = Profile::where('user_id', $user_id->id)->first();
 
         $schedules = Schedule::where('session_id', $profile->session_id)->where('department_id', $profile->department_id)->get();
         $monday = $tuesday = $wednesday = $thursday = $friday = $saturday = $sunday = array();

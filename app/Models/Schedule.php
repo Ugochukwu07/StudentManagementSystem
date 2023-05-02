@@ -22,6 +22,13 @@ class Schedule extends Model
         return $this->hasOne(User::class, 'id', 'student_id');
     }
 
+    public function getDayForHumansAttribute()
+    {
+        $day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+        return $day[$this->day];
+    }
+
     public function addedBy()
     {
         return $this->hasOne(User::class, 'id', 'added_by');

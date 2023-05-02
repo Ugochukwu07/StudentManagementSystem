@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Models\Feed;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\Student\MainService;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View as Factory;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Student\ProfileUpdateRequest;
+use App\Models\Session;
 
 class MainController extends Controller
 {
@@ -35,7 +37,9 @@ class MainController extends Controller
     public function profile(): Factory
     {
         $profile = Profile::where('user_id', auth()->user()->id)->first();
-        return view('student.profile', compact('profile'));
+        $departments = Department::all();
+        $sessions = Session::all();
+        return view('student.profile', compact('profile', 'departments', 'sessions'));
     }
 
 
@@ -46,7 +50,7 @@ class MainController extends Controller
      * @param  ProfileUpdateRequest $request
      * @return RedirectResponse
      */
-    public function profileSave($id, ProfileUpdateRequest $request): RedirectResponse
+    public function profileSave($id, ProfileUpdateRequest $request)
     {
         $profile = (new MainService())->updateProfile($request, auth()->user()->id, $id);
 

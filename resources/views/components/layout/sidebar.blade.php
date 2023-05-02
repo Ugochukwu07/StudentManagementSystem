@@ -461,7 +461,7 @@
                         <div class="form-group row">
                             <label class="col-form-label col-md-12">Classes</label>
                             <div class="col-md-12">
-                                <select name=" " class="form-select">
+                                <select name="class" class="form-select">
                                     <option>Select Class</option>
                                     @foreach ($classes() as $class)
                                         <option {{ (old('class_id') == $class->id) ? 'selected' : '' }} value="{{ $class->id }}">{{ $class->name . '-' . $class->session->year }}</option>
