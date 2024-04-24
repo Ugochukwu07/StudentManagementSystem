@@ -85,11 +85,7 @@
   <!-- Template Main JS File -->
   <script src="{{ asset('/') }}assets/js/main.js"></script>
 
-<<<<<<< HEAD
-  {{-- Hello and hi kk--}}
-=======
   {{-- Hello and hi --}}
->>>>>>> c938f17 (Hey)
 
     <script>
         $('#departments').DataTable({
