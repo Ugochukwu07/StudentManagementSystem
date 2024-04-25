@@ -85,19 +85,21 @@
   <!-- Template Main JS File -->
   <script src="{{ asset('/') }}assets/js/main.js"></script>
 
-  <script>
-    $('#departments').DataTable({
-        'paging'      : true,
-        'lengthChange': true,
-        'searching'   : true,
-        'ordering'    : true,
-        'info'        : true,
-        'autoWidth'   : true,
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    });
+  {{-- Hello --}}
+
+    <script>
+        $('#departments').DataTable({
+            'paging'      : true,
+            'lengthChange': true,
+            'searching'   : true,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : true,
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
     $('#faculty').DataTable({
         'paging'      : true,
         'lengthChange': true,

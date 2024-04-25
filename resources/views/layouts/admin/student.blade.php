@@ -31,6 +31,7 @@
                                 <td>{{ date('F j, Y h:i:s A', strtotime($student->created_at)) }}</td>
                                 <td>
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit-student-{{ $student->id }}" class="btn my-1 btn-sm btn-info">Edit</button>
+                                    <a href="{{ route('admin.result.add.student', ['id' => $student->id]) }}" class="btn my-1 btn-sm btn-success">Add Result</a>
                                     <a href="{{ route('admin.student.delete', ['id' => $student->id]) }}" class="btn my-1 btn-sm btn-danger">Delete</a>
                                 </td>
                             </tr>

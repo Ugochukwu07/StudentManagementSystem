@@ -57,6 +57,9 @@ Route::controller(ClassController::class)->name('class.')->prefix('class')->grou
 Route::controller(ResultController::class)->name('result.')->prefix('result')->group(function(){
     Route::get('/', 'all')->name('all');
 
+    Route::get('/add/department/{department_id}', 'addDepartment')->name('add.department');
+    Route::get('/add/student/{id}', 'addStudent')->name('add.student');
+
     Route::get('/add', 'add')->name('add');
     Route::post('/add/save', 'addSave')->name('add.save');
 
