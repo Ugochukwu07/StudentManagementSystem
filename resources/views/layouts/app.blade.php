@@ -85,7 +85,7 @@
   <!-- Template Main JS File -->
   <script src="{{ asset('/') }}assets/js/main.js"></script>
 
-  {{-- Hello --}}
+  {{-- Hello and hi --}}
 
     <script>
         $('#departments').DataTable({
